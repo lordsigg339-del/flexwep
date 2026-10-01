@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uncle Flex | Premium Services</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #070b14;
+            --bg-2: #101827;
+            --text: #edf3ff;
+            --muted: #bcc8da;
+            --line: rgba(255,255,255,0.08);
+            --blue: #1f6bff;
+            --purple: #8b5cf6;
+            --shadow: 0 28px 68px rgba(0,0,0,0.48);
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            margin: 0;
+            font-family: "Inter", sans-serif;
+            background:
+                radial-gradient(circle at top left, rgba(31,107,255,0.18), transparent 28%),
+                radial-gradient(circle at bottom right, rgba(139,92,246,0.18), transparent 32%),
+                linear-gradient(180deg, var(--bg), var(--bg-2));
+            color: var(--text);
+        }
+
+        a { color: inherit; text-decoration: none; }
+        img { display: block; max-width: 100%; }
+
+        .container {
+            width: min(1180px, calc(100% - 30px));
+            margin: 0 auto;
+        }
+
+        /* HEADER */
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(7,11,20,0.78);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+        }
+
+        .brand-mark {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            box-shadow: 0 14px 30px rgba(95,120,255,0.45);
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 46px;
+            padding: 0 22px;
+            border-radius: 14px;
+            border: 0;
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            color: #fff;
+            font-weight: 700;
+            box-shadow: 0 16px 28px rgba(81,102,255,0.34);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 22px 34px rgba(81,102,255,0.38);
+        }
+
+        /* HERO */
+        .hero {
+            padding: 78px 0 30px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.08fr 0.92fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255,255,255,0.03);
+            color: var(--muted);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            margin: 20px 0 18px;
+            font-size: clamp(3rem, 8vw, 5.8rem);
+            line-height: 0.96;
+            letter-spacing: -0.08em;
+            font-weight: 900;
+            background: linear-gradient(135deg, #edf3ff 0%, #dbe7ff 26%, #7da1ff 60%, #b38af8 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            margin: 0;
+            max-width: 680px;
+            color: var(--muted);
+            font-size: 1.07rem;
+            line-height: 1.9;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-top: 28px;
+        }
+
+        .primary-btn, .secondary-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 54px;
+            padding: 0 24px;
+            border-radius: 14px;
+            font-weight: 800;
+            transition: transform 0.2s ease;
+        }
+
+        .primary-btn {
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            color: white;
+            box-shadow: 0 18px 30px rgba(81,102,255,0.35);
+        }
+
+        .secondary-btn {
+            border: 1px solid var(--line);
+            background: rgba(255,255,255,0.02);
+            color: var(--text);
+        }
+
+        .primary-btn:hover, .secondary-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 28px;
+            flex-wrap: wrap;
+            margin-top: 32px;
+        }
+
+        .mini-stat strong {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 900;
+        }
+
+        .mini-stat span {
+            font-size: 0.82rem;
+            color: var(--muted);
+        }
+
+        .logo-panel {
+            position: relative;
+            border-radius: 28px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+            border: 1px solid var(--line);
+            box-shadow: var(--shadow);
+            padding: 24px;
+        }
+
+        .logo-box {
+            position: relative;
+            height: 430px;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.06);
+            background:
+                radial-gradient(circle at center, rgba(31,107,255,0.18), rgba(7,11,20,0.18) 50%, rgba(7,11,20,0.8)),
+                linear-gradient(180deg, rgba(16,24,39,0.96), rgba(7,11,20,0.96));
+        }
+
+        .logo-ring {
+            position: absolute;
+            inset: 58px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.09);
+            animation: spin 18s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .logo-core {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 150px;
+            height: 150px;
+            border-radius: 28px;
+            display: grid;
+            place-items: center;
+            font-size: 4.2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            box-shadow: 0 0 40px rgba(95,120,255,0.42);
+            border: 2px solid rgba(255,255,255,0.15);
+        }
+
+        /* SERVICES SECTION */
+        .section {
+            padding: 72px 0;
+        }
+
+        .section-head {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 18px;
+            margin-bottom: 28px;
+        }
+
+        .section-head h2 {
+            margin: 0;
+            font-size: clamp(2rem, 4vw, 3.1rem);
+            letter-spacing: -0.06em;
+            font-weight: 900;
+        }
+
+        .section-head span {
+            color: var(--muted);
+            font-weight: 600;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .service-card {
+            position: relative;
+            min-height: 300px;
+            padding: 26px 22px 20px;
+            border-radius: 22px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+            border: 1px solid var(--line);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            cursor: pointer;
+        }
+
+        .service-card:nth-child(1) { border-color: rgba(31,107,255,0.4); }
+        .service-card:nth-child(2) { border-color: rgba(139,92,246,0.4); }
+        .service-card:nth-child(3) { border-color: rgba(56,211,159,0.34); }
+        .service-card:nth-child(4) { border-color: rgba(247,199,103,0.34); }
+
+        .service-card::before {
+            content: "";
+            position: absolute;
+            left: -120%;
+            top: 0;
+            width: 80%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .service-card:hover::before { left: 120%; }
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.52);
+        }
+
+        .card-icon {
+            width: 62px;
+            height: 62px;
+            border-radius: 18px;
+            display: grid;
+            place-items: center;
+            font-size: 2rem;
+            margin-bottom: 18px;
+            background: linear-gradient(135deg, rgba(31,107,255,0.18), rgba(139,92,246,0.16));
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .service-card h3 {
+            margin: 0 0 12px;
+            font-size: 1.6rem;
+            font-weight: 800;
+        }
+
+        .service-card p {
+            margin: 0 0 18px;
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        /* DETAIL PAGES */
+        .detail-page {
+            display: none;
+        }
+
+        .detail-page.active {
+            display: block;
+        }
+
+        .page-wrap {
+            padding-top: 18px;
+        }
+
+        .page-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 46px;
+            padding: 0 20px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: rgba(255,255,255,0.04);
+            color: var(--text);
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.06);
+        }
+
+        .page-title {
+            margin: 0;
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            letter-spacing: -0.06em;
+            font-weight: 900;
+        }
+
+        .subtitle {
+            margin: 8px 0 0;
+            color: var(--muted);
+            line-height: 1.8;
+            max-width: 720px;
+        }
+
+        .service-list {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 28px;
+        }
+
+        .service-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 18px 18px;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.025);
+            border: 1px solid var(--line);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+            opacity: 0;
+            transform: translateX(40px);
+            animation: slideIn 0.7s ease forwards;
+        }
+
+        .service-item:nth-child(1) { animation-delay: 0.1s; }
+        .service-item:nth-child(2) { animation-delay: 0.2s; }
+        .service-item:nth-child(3) { animation-delay: 0.3s; }
+        .service-item:nth-child(4) { animation-delay: 0.4s; }
+        .service-item:nth-child(5) { animation-delay: 0.5s; }
+        .service-item:nth-child(6) { animation-delay: 0.6s; }
+        .service-item:nth-child(7) { animation-delay: 0.7s; }
+        .service-item:nth-child(8) { animation-delay: 0.8s; }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .service-item:hover {
+            transform: translateY(-2px);
+            border-color: rgba(31,107,255,0.35);
+        }
+
+        .svc-logo {
+            width: 58px;
+            height: 58px;
+            border-radius: 16px;
+            display: grid;
+            place-items: center;
+            font-weight: 900;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, rgba(31,107,255,0.18), rgba(139,92,246,0.18));
+            border: 1px solid rgba(255,255,255,0.09);
+        }
+
+        .svc-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 8px;
+        }
+
+        .svc-copy h4 {
+            margin: 0 0 6px;
+            font-size: 1.05rem;
+            font-weight: 800;
+        }
+
+        .svc-copy p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .gallery {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .gallery-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--muted);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .gallery-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.02);
+            aspect-ratio: 9/16;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.04);
+            box-shadow: 0 8px 24px rgba(31,107,255,0.25);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cta-panel {
+            margin-top: 32px;
+            padding: 28px 22px;
+            background: linear-gradient(135deg, rgba(31,107,255,0.12), rgba(139,92,246,0.08));
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            opacity: 0;
+            animation: slideIn 0.7s ease 0.9s forwards;
+        }
+
+        .cta-panel h3 {
+            margin: 0 0 8px;
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            letter-spacing: -0.06em;
+        }
+
+        .cta-panel p {
+            margin: 0 0 18px;
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .socials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .social {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 46px;
+            padding: 0 16px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--line);
+            color: var(--text);
+            font-weight: 700;
+            transition: background 0.2s, border-color 0.2s;
+            text-decoration: none;
+        }
+
+        .social:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(31,107,255,0.4);
+        }
+
+        .footer {
+            padding: 28px 0 40px;
+            text-align: center;
+            color: var(--muted);
+            border-top: 1px solid var(--line);
+            margin-top: 44px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 980px) {
+            .hero-grid { grid-template-columns: 1fr; }
+            .cards-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .service-list { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 640px) {
+            .nav-btn { display: none; }
+            .cards-grid { grid-template-columns: 1fr; }
+            .hero-actions { flex-direction: column; }
+            .primary-btn, .secondary-btn { width: 100%; }
+            .socials { flex-direction: column; }
+            .social { width: 100%; }
+            .gallery-images { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <header class="topbar">
+        <div class="container nav">
+            <div class="brand">
+                <div class="brand-mark">F</div>
+                <span>Uncle Flex</span>
+            </div>
+            <a class="nav-btn" href="https://wa.me/201063670889" target="_blank">Contact Now</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- HOME PAGE -->
+        <section id="home" class="hero">
+            <div class="container hero-grid">
+                <div>
+                    <div class="eyebrow">Official accounts only</div>
+                    <h1>Uncle<br>Flex</h1>
+                    <p>Professional services provided by Uncle Flex. Please note that you should only contact me through my official accounts listed on this page.</p>
+
+                    <div class="hero-actions">
+                        <button class="primary-btn" onclick="scrollToServices()">Explore Services</button>
+                        <a href="https://wa.me/201063670889" target="_blank" class="secondary-btn">WhatsApp</a>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="mini-stat">
+                            <strong>4</strong>
+                            <span>Service Groups</span>
+                        </div>
+                        <div class="mini-stat">
+                            <strong>24/7</strong>
+                            <span>Support</span>
+                        </div>
+                        <div class="mini-stat">
+                            <strong>100%</strong>
+                            <span>Official</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="logo-panel">
+                    <div class="logo-box">
+                        <div class="logo-ring"></div>
+                        <div class="logo-core">F</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES GRID -->
+        <section id="services" class="section">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Professional Services</h2>
+                    <span>Fast, secure, private, and reliable</span>
+                </div>
+
+                <div class="cards-grid">
+                    <div class="service-card" onclick="showPage('whatsapp')">
+                        <div class="card-icon">💬</div>
+                        <h3>WhatsApp Services</h3>
+                        <p>Account bans, unbans, verification, and premium username solutions.</p>
+                        <a href="#" style="color: #eaf1ff; font-weight: 700;">View details →</a>
+                    </div>
+
+                    <div class="service-card" onclick="showPage('telegram')">
+                        <div class="card-icon">📱</div>
+                        <h3>Telegram Services</h3>
+                        <p>Numbers across countries, posting support, secure checks, and account solutions.</p>
+                        <a href="#" style="color: #eaf1ff; font-weight: 700;">View details →</a>
+                    </div>
+
+                    <div class="service-card" onclick="showPage('web')">
+                        <div class="card-icon">🌐</div>
+                        <h3>Web Services</h3>
+                        <p>Custom websites, business pages, and Telegram/WhatsApp bot creation.</p>
+                        <a href="#" style="color: #eaf1ff; font-weight: 700;">View details →</a>
+                    </div>
+
+                    <div class="service-card" onclick="showPage('data')">
+                        <div class="card-icon">📊</div>
+                        <h3>Data Extraction</h3>
+                        <p>Data extraction support across multiple operators and data sources.</p>
+                        <a href="#" style="color: #eaf1ff; font-weight: 700;">View details →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHATSAPP PAGE -->
+        <section id="whatsapp" class="section detail-page">
+            <div class="container page-wrap">
+                <div class="page-head">
+                    <button class="back-btn" onclick="showPage('home')">← Back</button>
+                    <h2 class="page-title">WhatsApp Services</h2>
+                </div>
+                <p class="subtitle">Professional WhatsApp account management and recovery solutions.</p>
+
+                <div class="service-list">
+                    <div class="service-item">
+                        <div class="svc-logo">🚫</div>
+                        <div class="svc-copy">
+                            <h4>Account Bans</h4>
+                            <p>Handling and resolution of WhatsApp account restrictions and bans.</p>
+                            <div class="gallery">
+                                <span class="gallery-label">Real Cases Examples:</span>
+                                <div class="gallery-images">
+                                    <div class="gallery-item">
+                                        <img src="img/wpan1.jpg" alt="WhatsApp Ban Case 1">
+                                    </div>
+                                    <div class="gallery-item">
+                                        <img src="img/wpan2.jpg" alt="WhatsApp Ban Case 2">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="svc-logo">🔓</div>
+                        <div class="svc-copy">
+                            <h4>Accounts Unbans</h4>
+                            <p>Safe and reliable support to restore blocked or restricted accounts.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="svc-logo">✅</div>
+                        <div class="svc-copy">
+                            <h4>WhatsApp Verification</h4>
+                            <p>Verification and account security services to protect and restore access.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="svc-logo">👑</div>
+                        <div class="svc-copy">
+                            <h4>Premium Usernames</h4>
+                            <p>Get rare or premium username options for enhanced identity and branding.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cta-panel">
+                    <h3>Need WhatsApp help?</h3>
+                    <p>Contact us through the official channels below for quick support.</p>
+                    <div class="socials">
+                        <a href="https://wa.me/201063670889" target="_blank" class="social">💬 WhatsApp</a>
+                        <a href="https://t.me/Dbbdes" target="_blank" class="social">📱 @Dbbdes</a>
+                        <a href="https://t.me/E_e_w7" target="_blank" class="social">📱 @E_e_w7</a>
+                        <a href="https://t.me/U_r_2s" target="_blank" class="social">📱 @U_r_2s</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TELEGRAM PAGE -->
+        <section id="telegram" class="section detail-page">
+            <div class="container page-wrap">
+                <div class="page-head">
+                    <button class="back-btn" onclick="showPage('home')">← Back</button>
+                    <h2 class="page-title">Telegram Services</h2>
+                </div>
+                <p class="subtitle">Complete Telegram solutions for account access, posting, and verification support.</p>
+
+                <div class="service-list">
+                    <div class="service-item">
+                        <div class="svc-logo">🌍</div>
+                        <div class="svc-copy">
+                            <h4>Phone Numbers from All Countries</h4>
+                            <p>Access to phone numbers for different countries and regions.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="svc-logo">📢</div>
+                        <div class="svc-copy">
+                            <h4>Telegram Mass Posting</h4>
+                            <p>Bulk posting and broadcasting support for content and promotions.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="svc-logo">⚠️</div>
+                        <div class="svc-copy">
+                            <h4>Fake / Fraudulent Accounts Detection</h4>
+                            <p>Security checks for suspicious, fake, or fraudulent account activity.</p>
+                            <div class="gallery">
+                                <span class="gallery-label">Detection Examples:</span>
+                                <div class="gallery-images">
+                                    <div class="gallery-item">
+                                        <img src="img/teg1.jpg" alt="Telegram Fraudulent Account">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="svc-logo">📅</div>
+                        <div class="svc-copy">
+                            <h4>Accounts Created After 2015</h4>
+                            <p>Available account selection based on creation date and activity level.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cta-panel">
+                    <h3>Contact Telegram Team</h3>
+                    <p>Reach our official Telegram accounts to discuss your requirements.</p>
+                    <div class="socials">
+                        <a href="https://t.me/Dbbdes" target="_blank" class="social">📱 @Dbbdes</a>
+                        <a href="https://t.me/E_e_w7" target="_blank" class="social">📱 @E_e_w7</a>
+                        <a href="https://t.me/U_r_2s" target="_blank" class="social">📱 @U_r_2s</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WEB PAGE -->
+        <section id="web" class="section detail-page">
+            <div class="container page-wrap">
+                <div class="page-head">
+                    <button class="back-btn" onclick="showPage('home')">← Back</button>
+                    <h2 class="page-title">Web Services</h2>
+                </div>
+                <p class="subtitle">Professional website and automation solutions to support digital growth.</p>
+
+                <div class="service-list">
+                    <div class="service-item">
+                        <div class="svc-logo">🌐</div>
+                        <div class="svc-copy">
+                            <h4>Website Creation</h4>
+                            <p>Custom websites designed to match your brand and project goals.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="svc-logo">🤖</div>
+                        <div class="svc-copy">
+                            <h4>Telegram Bots</h4>
+                            <p>Smart automation for messaging, support, and customer interaction.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="svc-logo">💬</div>
+                        <div class="svc-copy">
+                            <h4>WhatsApp Bots</h4>
+                            <p>Business automation and WhatsApp engagement solutions.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="svc-logo">⚙️</div>
+                        <div class="svc-copy">
+                            <h4>Custom Development</h4>
+                            <p>Adapted functionality and digital tools tailored to specific needs.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cta-panel">
+                    <h3>Need a Website or Bot?</h3>
+                    <p>Let's build your next digital solution with a clean and reliable setup.</p>
+                    <div class="socials">
+                        <a href="https://wa.me/201063670889" target="_blank" class="social">💬 WhatsApp</a>
+                        <a href="https://t.me/Dbbdes" target="_blank" class="social">📱 Telegram</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DATA EXTRACTION PAGE -->
+        <section id="data" class="section detail-page">
+            <div class="container page-wrap">
+                <div class="page-head">
+                    <button class="back-btn" onclick="showPage('home')">← Back</button>
+                    <h2 class="page-title">Data Extraction Services</h2>
+                </div>
+                <p class="subtitle">Specialized data extraction support across multiple operators and data sources.</p>
+
+                <div class="service-list">
+                    <div class="service-item">
+                        <div class="svc-logo"><img src="img/ets.jpg" alt="Etisalat"></div>
+                        <div class="svc-copy">
+                            <h4>Etisalat Data Extraction</h4>
+                            <p>Extraction support tailored for Etisalat-related data objectives.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="svc-logo"><img src="img/ntra.jpg" alt="Nitra"></div>
+                        <div class="svc-copy">
+                            <h4>Nitra Data Extraction</h4>
+                            <p>Specialized Nitra data extraction and related support services.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="svc-logo"><img src="img/orrg.jpg" alt="Orange"></div>
+                        <div class="svc-copy">
+                            <h4>Orange Data Extraction</h4>
+                            <p>Operator-specific data extraction and retrieval support for Orange.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="svc-logo"><img src="img/voda.jpg" alt="Vodafone"></div>
+                        <div class="svc-copy">
+                            <h4>Vodafone Data Extraction</h4>
+                            <p>Support for Vodafone data acquisition and structured extraction tasks.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="svc-logo"><img src="img/we.jpg" alt="WE"></div>
+                        <div class="svc-copy">
+                            <h4>WE Data Extraction</h4>
+                            <p>Reliable extraction support for WE network data requirements.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="svc-logo">📞</div>
+                        <div class="svc-copy">
+                            <h4>Call Logs Extraction</h4>
+                            <p>Retrieval and review of call records and log-based data.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="svc-logo">🟣</div>
+                        <div class="svc-copy">
+                            <h4>Tamween Data Extraction</h4>
+                            <p>Support for data extraction on Tamween-related processes and systems.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="svc-logo">📦</div>
+                        <div class="svc-copy">
+                            <h4>Custom Data Requests</h4>
+                            <p>Additional extraction solutions available based on your requirements.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cta-panel">
+                    <h3>Need Custom Data Support?</h3>
+                    <p>Contact our official channels to discuss your extraction requirement and availability.</p>
+                    <div class="socials">
+                        <a href="https://wa.me/201063670889" target="_blank" class="social">💬 WhatsApp</a>
+                        <a href="https://t.me/Dbbdes" target="_blank" class="social">📱 @Dbbdes</a>
+                        <a href="https://t.me/E_e_w7" target="_blank" class="social">📱 @E_e_w7</a>
+                        <a href="https://t.me/U_r_2s" target="_blank" class="social">📱 @U_r_2s</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            © 2024 Uncle Flex — Premium Services<br>
+            Only contact through official channels listed on this page.
+        </div>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.detail-page');
+            pages.forEach(p => p.classList.remove('active'));
+
+            if (pageId === 'home') {
+                document.getElementById('home').style.display = 'block';
+                document.getElementById('services').style.display = 'block';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                document.getElementById('home').style.display = 'none';
+                document.getElementById('services').style.display = 'none';
+                document.getElementById(pageId).classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function scrollToServices() {
+            document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
